@@ -32,7 +32,7 @@ static int	check_no_quantif(char **format, char **string, int mask_pos)
 			return (0);
 		else
 		{
-			(*format) += mask_pos + 1;
+			*format += mask_pos + 1;
 			(*string)++;
 			return (1);
 		}

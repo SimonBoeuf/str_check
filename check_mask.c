@@ -2,20 +2,29 @@
 
 int	check_default_mask(char **format, char **string)
 {
-	int	found;
+	int	i;
+	int	j;
 
-	found = 0;
+	i = 0;
+	while (*((*format) + i) != ']')
+	{
+		if (!format[0][i])
+			return (-1);
+		i++;
+	}
+	j = i;
 	while (**format != ']')
 	{
 		if (!**format)
 			return (-1);
-		if (**format == **string)
-			found = 1;
-		(*format)++;
+		if (check_char(format, string, *(*format + j + 1), j))
+			return (1);
+		j = j - 1;
+		*format += 1;
 	}
 	(*format)++;
 	(*string)++;
-	return (found);
+	return (0);
 }
 
 int	check_mask(int mask_number, char **string)
